@@ -5,13 +5,14 @@ profile picture, with the player's name on the frame's nameplate in Torn's own h
 
 ## Install
 
-Install [Tampermonkey](https://www.tampermonkey.net/), then open
+Install a userscript manager ([Tampermonkey](https://www.tampermonkey.net/), Violentmonkey,
+Greasemonkey, Torn PDA's script manager, Userscripts on Safari), then open
 [honor-frames.user.js](https://raw.githubusercontent.com/manuelcecchetto/torn-honor-frames/main/userscript/honor-frames.user.js)
-and confirm. Tampermonkey updates it from the same link.
+and confirm. Managers that auto-update fetch new versions from the same link.
 
-The script runs only on profile pages. It downloads `frames/frames.json` and the frame for the
-honor being shown straight from this repository (`raw.githubusercontent.com`); it sends nothing
-about you or the page anywhere.
+The script runs only on profile pages with no special permissions (`@grant none`). Every frame's
+geometry is built in; it loads only the image of the frame being shown, as a plain `<img>` from
+this repository (`raw.githubusercontent.com`), and sends nothing about you or the page anywhere.
 
 ## Layout
 
@@ -23,12 +24,15 @@ about you or the page anywhere.
 - `tools/process.py research/raw/<id>.png ...`: generated image to frame (finds window and
   nameplate, removes green spill and grey haze). `MANIFEST=` writes the boxes elsewhere for
   parallel runs. `tools/check.py` flags broken frames, `tools/qa_sheet.py` draws contact sheets.
+- `tools/build.py`: copies `frames/frames.json` into the script's `FRAMES` line. Run it after any
+  frame change and bump `@version`.
 - `tools/skip.txt`: bars left out (flags, camo and plain textures). 163 and 1144 were refused by
   the image API's moderation and have no frame.
 - `research/` (not committed): source bars, raw generations, Torn's profile CSS/JS.
 
-A pushed frame reaches players within 5 minutes (GitHub's raw cache); each frame URL carries its
-content hash, so browsers never show an old one. jsDelivr was dropped: it kept serving `@main`
+A changed frame reaches players with the next script version (`tools/build.py`, bump
+`@version`); each frame URL carries its content hash, so browsers never mix an old image with new
+geometry for long. jsDelivr was dropped: it kept serving `@main`
 from hours before, even after a purge.
 
 The frames are derived from Torn's honor bar artwork, which belongs to TORN LTD; the MIT license
