@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Torn Honor Frames
 // @namespace    torn-honor-frames
-// @version      1.1.0
+// @version      1.1.1
 // @description  Turns the honor bar on Torn profiles into an ornate frame around the profile picture, with the name on its nameplate.
 // @author       Manuel [3747263]
 // @license      MIT
@@ -31,7 +31,8 @@
   const CSS = `
 /* The profile column stays 206px wide so Torn's floats keep their places; the frame is
    centred on it and reaches a little past it. */
-.profile-wrapper .profile-image.thf-framed { position: relative; height: 348px; }
+/* z-index: Torn's digit boxes have an absolute reflection strip that reaches over the wider frame. */
+.profile-wrapper .profile-image.thf-framed { position: relative; z-index: 1; height: 348px; }
 .profile-wrapper .profile-image.thf-framed > :not(.thf-frame) { display: none; }
 .thf-frame { position: absolute; left: -10px; top: -6px; width: 232px; height: 348px; display: block; }
 .thf-photo { position: absolute; object-fit: cover; }
