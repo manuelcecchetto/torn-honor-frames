@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Torn Honor Frames
 // @namespace    torn-honor-frames
-// @version      1.0.1
+// @version      1.0.2
 // @description  Turns the honor bar on Torn profiles into an ornate frame around the profile picture, with the name on its nameplate.
 // @author       Manuel [3747263]
 // @license      MIT
@@ -39,7 +39,10 @@
 .thf-frame .honor-text-wrap.thf-name {
   position: absolute; display: block; height: 20px; line-height: 20px;
   pointer-events: none; transform: scale(1.5);
-}`;
+}
+/* Torn overlaps each letter's outline with the next (-2px); scaled up that reads cramped. */
+.thf-frame .honor-text-wrap.thf-name .honor-text-svg span { margin-right: -1px; }
+.thf-frame .honor-text-wrap.thf-name .honor-text-svg span:last-of-type { margin-right: 0; }`;
 
   let manifest = null;
   function loadManifest() {
