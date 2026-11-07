@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Torn Honor Frames
 // @namespace    torn-honor-frames
-// @version      1.0.0
+// @version      1.0.1
 // @description  Turns the honor bar on Torn profiles into an ornate frame around the profile picture, with the name on its nameplate.
 // @author       Manuel [3747263]
 // @license      MIT
@@ -12,19 +12,19 @@
 // @match        https://www.torn.com/profiles.php*
 // @run-at       document-idle
 // @grant        GM_xmlhttpRequest
-// @connect      cdn.jsdelivr.net
+// @connect      raw.githubusercontent.com
 // ==/UserScript==
 
 // Each frame was generated from one honor bar (tools/ in this project) and comes with its photo
 // window and nameplate in frames.json, in CSS pixels of the 232x348 frame box. Frames are served
-// from the GitHub repository through the jsDelivr CDN; the script sends nothing about the page or
+// straight from the GitHub repository (raw.githubusercontent.com, cached 5 minutes); the script sends nothing about the page or
 // the player anywhere, it only downloads frames.json and the frame of the honor being shown. Torn's own markup is
 // only hidden, never changed, so the profile page's React keeps working; profiles whose honor has
 // no frame stay as they are.
 (() => {
   'use strict';
 
-  const BASE = 'https://cdn.jsdelivr.net/gh/manuelcecchetto/torn-honor-frames@main';
+  const BASE = 'https://raw.githubusercontent.com/manuelcecchetto/torn-honor-frames/main';
   /** How far the photo reaches under the frame on each side, so the frame's inner lip overlaps it. */
   const UNDER = 4;
 

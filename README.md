@@ -10,9 +10,8 @@ Install [Tampermonkey](https://www.tampermonkey.net/), then open
 and confirm. Tampermonkey updates it from the same link.
 
 The script runs only on profile pages. It downloads `frames/frames.json` and the frame for the
-honor being shown from this repository through jsDelivr
-(`cdn.jsdelivr.net/gh/manuelcecchetto/torn-honor-frames@main`); it sends nothing about you or the
-page anywhere.
+honor being shown straight from this repository (`raw.githubusercontent.com`); it sends nothing
+about you or the page anywhere.
 
 ## Layout
 
@@ -28,9 +27,9 @@ page anywhere.
   the image API's moderation and have no frame.
 - `research/` (not committed): source bars, raw generations, Torn's profile CSS/JS.
 
-After changing frames, push, then clear jsDelivr's copy of the branch (it caches `@main` for up
-to 12 hours): `curl https://purge.jsdelivr.net/gh/manuelcecchetto/torn-honor-frames@main/frames/frames.json`
-and the same for each changed `frames/<id>.webp`.
+A pushed frame reaches players within 5 minutes (GitHub's raw cache); each frame URL carries its
+content hash, so browsers never show an old one. jsDelivr was dropped: it kept serving `@main`
+from hours before, even after a purge.
 
 The frames are derived from Torn's honor bar artwork, which belongs to TORN LTD; the MIT license
 covers the code only.
