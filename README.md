@@ -26,7 +26,10 @@ this repository (`raw.githubusercontent.com`), and sends nothing about you or th
   parallel runs. `tools/check.py` flags broken frames, `tools/qa_sheet.py` draws contact sheets.
 - `tools/build.py`: copies `frames/frames.json` into the script's `FRAMES` line. Run it after any
   frame change and bump `@version`.
-- `tools/skip.txt`: bars left out (flags, camo and plain textures). 163 and 1144 were refused by
+- `tools/skip.txt`: bars left out (flags, camo and plain textures), except Taiwan (208), a
+  special edition: its frame was generated without characters, then `tools/pooh.py` adds
+  E. H. Shepard's 1926 Winnie-the-Pooh drawings (public domain, Wikimedia Commons
+  `Winnie-the-Pooh 092.png` and `093.png`); the image API refuses Pooh with that flag. 163 and 1144 were refused by
   the image API's moderation and have no frame.
 - `research/` (not committed): source bars, raw generations, Torn's profile CSS/JS.
 
